@@ -58,13 +58,13 @@ begin
     begin
         wait for 8 ns;
         btn_tb <= '1';
-        wait for 16 ns;
+        wait for 1 ms;
         btn_tb <= '0';
-        wait for 16 ns;
+        wait for 1 ms;
         btn_tb <= '1';
-        wait for 40 ms;
+        wait for 12 ms;
         btn_tb <= '0';
-        wait for 20 ms; 
+        wait for 40 ms;
     end process;
     debnc: debounce
         port map(clk => clk_tb,
