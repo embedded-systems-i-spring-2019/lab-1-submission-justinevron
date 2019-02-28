@@ -51,7 +51,8 @@ begin
 cnt <= count;
 process(clk)
 begin
-if rising_edge(clk)and en = '1' then
+if rising_edge(clk) then
+    if en = '1' then
         if rst = '1' then
             count <= "0000";
         end if;
@@ -76,6 +77,7 @@ if rising_edge(clk)and en = '1' then
                          count <= value;
                     end if;
                 end if;
+        end if;
         end if;
     end if;
 end process;

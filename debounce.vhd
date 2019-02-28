@@ -47,19 +47,16 @@ begin
         if rising_edge(clk) then
             reg(1) <= reg(0);
             reg(0) <= btn;
-        end if;
-        if reg(1) = '1' and unsigned(count) /= 2500000 then
-            count <= STD_LOGIC_VECTOR(unsigned(count) + 1);
-        elsif reg(1) = '0' then
-            count <= (others => '0');
-        end if;
-    end process;
-    process(count)
-    begin
-        if unsigned(count) = 2500000 then
-            debounced <= '1';
-        else
-            debounced <= '0';
+            if reg(1) = '1'  then
+                if unsigned(count) < 2500000 then
+                    count <= STD_LOGIC_VECTOR(unsigned(count) + 1);
+                else
+                    debounced <= '1';
+                end if;
+            elsif reg(1) = '0' then
+                count <= (others => '0');
+                debounced <= '0';
+            end if;
         end if;
     end process;
 
